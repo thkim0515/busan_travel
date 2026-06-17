@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부산 여행 · 2026 여름</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean: #0077B6;
+    --ocean-light: #0096c7;
+    --sky: #48CAE4;
+    --sky-pale: #caf0f8;
+    --sand: #F4E4C1;
+    --night: #03045E;
+    --coral: #FF6B6B;
+    --white: #FAFCFF;
+    --text: #0d1b2e;
+    --muted: #6b7c93;
+    --border: rgba(0,119,182,0.1);
+    --card-bg: #ffffff;
+    --section-alt: #f4f8ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    height: 100vh;
+    min-height: 640px;
+    background: linear-gradient(155deg, #020b2d 0%, #03045E 25%, #0077B6 65%, #48CAE4 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* animated bokeh */
+  .hero-bokeh {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .bokeh {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.18;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .bokeh:nth-child(1) { width: 400px; height: 400px; background: #48CAE4; top: -100px; left: -100px; animation-delay: 0s; }
+  .bokeh:nth-child(2) { width: 300px; height: 300px; background: #0077B6; bottom: 100px; right: -50px; animation-delay: -3s; }
+  .bokeh:nth-child(3) { width: 250px; height: 250px; background: #90e0ef; top: 50%; left: 60%; animation-delay: -6s; }
+  @keyframes drift { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(30px,20px) scale(1.1)} }
+
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 24px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag::before, .hero-tag::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--sky);
+    vertical-align: middle;
+    margin: 0 12px;
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(64px, 12vw, 130px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, #48CAE4, #90e0ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 2px;
+    margin-bottom: 52px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-dates {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-date {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    cursor: pointer;
+    transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    text-decoration: none;
+  }
+  .hero-date:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px) scale(1.03);
+    border-color: rgba(255,255,255,0.35);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.35);
+    font-size: 9px;
+    letter-spacing: 3px;
+    z-index: 1;
+    animation: floatUp 2.4s ease-in-out infinite;
+  }
+  .scroll-mouse {
+    width: 20px;
+    height: 32px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-mouse::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    animation: scrollDown 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollDown { 0%,100%{top:5px;opacity:1} 80%{top:16px;opacity:0} }
+  @keyframes floatUp { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+
+  .hero-waves {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 130px;
+    overflow: hidden;
+  }
+  .hero-waves svg { width: 100%; height: 100%; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,252,255,0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    height: 54px;
+    box-shadow: 0 1px 20px rgba(0,119,182,0.06);
+  }
+  .nav-item {
+    padding: 0 16px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+    white-space: nowrap;
+    gap: 5px;
+  }
+  .nav-item:hover { color: var(--ocean); }
+  .nav-item.active { color: var(--ocean); border-bottom-color: var(--ocean); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ocean);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--ocean);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.3;
+  }
+
+  /* ── DAY SECTION ── */
+  .day-section {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+  }
+  .day-section:nth-child(even) { background: var(--section-alt); }
+
+  .day-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .day-number {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 80px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(0,119,182,0.07);
+    flex-shrink: 0;
+    margin-top: -10px;
+    user-select: none;
+  }
+  .day-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ocean);
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .day-label::before { content:''; display:block; width:16px; height:2px; background:var(--ocean); border-radius:2px; }
+  .day-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+  }
+  .day-desc { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.7; }
+
+  /* ── MAIN CONTENT GRID ── */
+  .day-content {
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; display: flex; flex-direction: column; gap: 6px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 21px; top: 22px; bottom: 22px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--ocean), rgba(0,119,182,0.05));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+
+  .timeline-dot {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .dot-ocean { background: linear-gradient(135deg, #e0f4fd, #caf0f8); }
+  .dot-food  { background: linear-gradient(135deg, #fff3e0, #ffe5b4); }
+  .dot-cafe  { background: linear-gradient(135deg, #f3e5f5, #e8d5f5); }
+  .dot-night { background: linear-gradient(135deg, #e8eaf6, #d0d5f5); }
+  .dot-fun   { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+
+  .timeline-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.065);
+    border-radius: 18px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: all .25s cubic-bezier(.34,1.2,.64,1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .timeline-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--ocean), var(--sky));
+    opacity: 0;
+    transition: opacity .2s;
+    border-radius: 0 2px 2px 0;
+  }
+  .timeline-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 28px rgba(0,119,182,0.12);
+    border-color: rgba(0,119,182,0.15);
+  }
+  .timeline-card:hover::before { opacity: 1; }
+  .timeline-card.selected {
+    border-color: var(--ocean);
+    box-shadow: 0 6px 28px rgba(0,119,182,0.18);
+    background: linear-gradient(135deg, #fff, #f4f9ff);
+  }
+  .timeline-card.selected::before { opacity: 1; }
+
+  .card-time {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--ocean);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  .card-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .card-warn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--coral);
+    background: #fff3f3;
+    border: 1px solid rgba(255,107,107,0.2);
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  /* ── MAP PANEL ── */
+  .map-sticky {
+    position: sticky;
+    top: 74px;
+  }
+  .map-panel {
+    background: var(--card-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+  }
+  .map-panel-header {
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--night), var(--ocean));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .map-panel-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .map-panel-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+  }
+  .map-frame iframe {
+    width: 100%;
+    height: 360px;
+    border: none;
+    display: block;
+  }
+  .map-locations {
+    border-top: 1px solid var(--border);
+    max-height: 240px;
+    overflow-y: auto;
+  }
+  .map-locations::-webkit-scrollbar { width: 4px; }
+  .map-locations::-webkit-scrollbar-track { background: transparent; }
+  .map-locations::-webkit-scrollbar-thumb { background: rgba(0,119,182,0.2); border-radius: 2px; }
+  .map-loc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    cursor: pointer;
+    transition: background .15s;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .map-loc-item:last-child { border-bottom: none; }
+  .map-loc-item:hover { background: #f4f8ff; }
+  .map-loc-item.active { background: linear-gradient(90deg, #edf6ff, #f4f8ff); color: var(--ocean); font-weight: 700; }
+  .map-loc-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-light));
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .map-loc-item.active .map-loc-num {
+    background: linear-gradient(135deg, var(--night), var(--ocean));
+  }
+  .map-open-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 13px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ocean);
+    background: linear-gradient(135deg, #f4f8ff, #edf6ff);
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    transition: all .2s;
+  }
+  .map-open-btn:hover { background: var(--ocean); color: #fff; }
+
+  /* ── HOTELS ── */
+  .hotels-section {
+    padding: 90px 0;
+    background: linear-gradient(180deg, #fff 0%, var(--section-alt) 100%);
+  }
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .hotel-card {
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 24px;
+    padding: 28px;
+    position: relative;
+    transition: all .3s cubic-bezier(.34,1.2,.64,1);
+    background: var(--card-bg);
+    overflow: hidden;
+  }
+  .hotel-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ocean), var(--sky));
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .hotel-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,119,182,0.12); }
+  .hotel-card:hover::after { opacity: 1; }
+  .hotel-card.top-pick {
+    border-color: rgba(0,119,182,0.25);
+    background: linear-gradient(135deg, #fff, #f4f9ff);
+  }
+  .hotel-card.top-pick::after { opacity: 1; }
+  .hotel-badge {
+    position: absolute;
+    top: 18px; right: 18px;
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-light));
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 12px rgba(0,119,182,0.3);
+  }
+  .hotel-icon { font-size: 32px; margin-bottom: 14px; }
+  .hotel-name { font-size: 17px; font-weight: 700; margin-bottom: 5px; }
+  .hotel-rating {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hotel-rating .stars { color: #f59e0b; font-weight: 700; font-size: 14px; }
+  .hotel-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
+  .hotel-tag {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ocean);
+    background: #edf6ff;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-right: 4px;
+  }
+
+  /* ── CHECKLIST SECTION ── */
+  .checklist-section {
+    padding: 90px 0;
+    background: linear-gradient(135deg, #edf6ff 0%, #f0f9ff 50%, #e8f4fd 100%);
+  }
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .check-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255,255,255,0.8);
+    transition: all .2s;
+  }
+  .check-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.09); }
+  .check-urgency-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .urgent { background: var(--coral); box-shadow: 0 0 0 4px rgba(255,107,107,0.2); }
+  .soon { background: #f59e0b; box-shadow: 0 0 0 4px rgba(245,158,11,0.2); }
+  .whenever { background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.2); }
+  .check-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .check-sub { font-size: 11px; color: var(--muted); margin-bottom: 8px; font-weight: 500; letter-spacing: 0.5px; }
+  .check-desc { font-size: 13px; color: #4a5568; line-height: 1.7; }
+  .check-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .status-urgent { color: var(--coral); background: #fff3f3; border: 1px solid rgba(255,107,107,0.2); }
+  .status-soon { color: #d97706; background: #fffbeb; border: 1px solid rgba(245,158,11,0.2); }
+  .status-whenever { color: #16a34a; background: #f0fdf4; border: 1px solid rgba(34,197,94,0.2); }
+  .check-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ocean);
+    background: #edf6ff;
+    padding: 5px 14px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all .15s;
+    border: 1px solid rgba(0,119,182,0.15);
+  }
+  .check-btn:hover { background: var(--ocean); color: #fff; }
+
+  /* ── PACKING SECTION ── */
+  .packing-section {
+    padding: 90px 0;
+    background: linear-gradient(180deg, #fff 0%, #f8faff 100%);
+  }
+  .pack-categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .pack-cat-btn {
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .2s;
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .pack-cat-btn:hover, .pack-cat-btn.active {
+    background: var(--ocean);
+    color: #fff;
+    border-color: var(--ocean);
+    box-shadow: 0 4px 16px rgba(0,119,182,0.25);
+  }
+  .pack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .pack-group {
+    background: var(--card-bg);
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.07);
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    transition: all .2s;
+  }
+  .pack-group:hover { box-shadow: 0 8px 32px rgba(0,119,182,0.1); }
+  .pack-group-header {
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pack-group-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .pack-group-title { font-size: 15px; font-weight: 700; }
+  .pack-group-count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ocean);
+    background: #edf6ff;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .pack-items { padding: 4px 0 16px; }
+  .pack-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 22px;
+    cursor: pointer;
+    transition: background .12s;
+    border-radius: 0;
+  }
+  .pack-item:hover { background: #f8fbff; }
+  .pack-item.checked { opacity: 0.5; }
+  .pack-item.checked .pack-item-name { text-decoration: line-through; }
+  .pack-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid rgba(0,119,182,0.25);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    background: transparent;
+  }
+  .pack-item.checked .pack-checkbox {
+    background: var(--ocean);
+    border-color: var(--ocean);
+  }
+  .pack-item.checked .pack-checkbox::after {
+    content: '✓';
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .pack-item-name {
+    font-size: 13.5px;
+    color: var(--text);
+    flex: 1;
+  }
+  .pack-item-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .pack-item-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+  .tag-must { background: #fff0f0; color: var(--coral); }
+  .tag-rec  { background: #edf6ff; color: var(--ocean); }
+  .tag-opt  { background: #f0fdf4; color: #16a34a; }
+
+  .pack-progress-bar-wrap {
+    padding: 16px 22px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    margin-top: 4px;
+  }
+  .pack-progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .pack-progress-bar {
+    height: 4px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pack-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ocean), var(--sky));
+    border-radius: 2px;
+    transition: width .4s ease;
+  }
+  .pack-summary {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .pack-summary-chip {
+    padding: 10px 20px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chip-total { background: #edf6ff; color: var(--ocean); }
+  .chip-checked { background: #f0fdf4; color: #16a34a; }
+  .chip-remain { background: #fff0f0; color: var(--coral); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 56px 24px 48px;
+    text-align: center;
+    background: var(--night);
+    position: relative;
+    overflow: hidden;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(72,202,228,0.4), transparent);
+  }
+  .footer-wave {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 40px;
+    opacity: 0.08;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+  }
+  .footer-logo span { color: var(--sky); }
+  footer p {
+    color: rgba(255,255,255,0.35);
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 6px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .day-content { grid-template-columns: 1fr; }
+    .map-sticky { position: static; }
+    .map-frame iframe { height: 280px; }
+    .pack-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    nav { gap: 0; padding: 0 4px; }
+    .nav-item { padding: 0 10px; font-size: 12px; }
+    .container { padding: 0 16px; }
+    .hero h1 { letter-spacing: -2px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bokeh">
+    <div class="bokeh"></div>
+    <div class="bokeh"></div>
+    <div class="bokeh"></div>
+  </div>
+  <div class="hero-tag">2026 · 커플 여행 · 8월 4일 — 7일</div>
+  <h1>부<span class="highlight">산</span></h1>
+  <p class="hero-sub">송정 바다 &nbsp;·&nbsp; 스카이캡슐 &nbsp;·&nbsp; 광안대교 야경 &nbsp;·&nbsp; 태종대</p>
+  <div class="hero-dates">
+    <a href="#day1" class="hero-date">🌙 Day 1 · 이동</a>
+    <a href="#day2" class="hero-date">☀️ Day 2 · 송정</a>
+    <a href="#day3" class="hero-date">🚗 Day 3 · 탐방</a>
+    <a href="#day4" class="hero-date">🌇 Day 4 · 마무리</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-mouse"></div>
+    SCROLL
+  </div>
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,70 C180,110 360,30 540,70 C720,110 900,30 1080,70 C1260,110 1380,50 1440,70 L1440,130 L0,130 Z" fill="#FAFCFF" opacity="0.4"/>
+      <path d="M0,90 C200,120 400,50 600,90 C800,130 1000,50 1200,90 C1340,115 1400,80 1440,90 L1440,130 L0,130 Z" fill="#FAFCFF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#hotels" class="nav-item">🏨 숙소</a>
+  <a href="#day2" class="nav-item">Day 2</a>
+  <a href="#day3" class="nav-item">Day 3</a>
+  <a href="#day4" class="nav-item">Day 4</a>
+  <a href="#checklist" class="nav-item">✅ 예약</a>
+  <a href="#packing" class="nav-item">🎒 준비물</a>
+</nav>
+
+<!-- HOTELS -->
+<section id="hotels" class="hotels-section">
+  <div class="container">
+    <p class="section-eyebrow">숙소 추천</p>
+    <h2 class="section-title">송정해수욕장<br>도보 1분 숙소</h2>
+    <div class="hotels-grid">
+      <div class="hotel-card top-pick">
+        <span class="hotel-badge">⭐ 1순위</span>
+        <div class="hotel-icon">🐾</div>
+        <div class="hotel-name">Hound Hotel Songjeong</div>
+        <div class="hotel-rating"><span class="stars">★ 4.6</span> · 리뷰 24개</div>
+        <div class="hotel-desc">신축급 청결도, 송정역(해상열차) 도보 1분. 커플·가족 후기 최상. 해변 첫 번째 골목 위치. 조기 체크인 요청 가능.</div>
+        <span class="hotel-tag">🌊 해변 1분</span>
+        <span class="hotel-tag">✨ 신축급</span>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel-icon">🏨</div>
+        <div class="hotel-name">Hotel Laon</div>
+        <div class="hotel-rating"><span class="stars">★ 4.3</span> · 리뷰 578개</div>
+        <div class="hotel-desc">해변 바로 앞 오션뷰, 조식 포함. 일출 보기에 최적. 자쿠지 & 오션뷰 방 인기.</div>
+        <span class="hotel-tag">🌅 오션뷰</span>
+        <span class="hotel-tag">🍳 조식포함</span>
+      </div>
+      <div class="hotel-card">
+        <div class="hotel-icon">🌊</div>
+        <div class="hotel-name">Carib Hotel</div>
+        <div class="hotel-rating"><span class="stars">★ 4.2</span> · 리뷰 373개</div>
+        <div class="hotel-desc">가성비 오션뷰의 끝판왕. 대형 욕조 & 오션뷰 합리적 가격. 장기 투숙자 단골 후기 많음.</div>
+        <span class="hotel-tag">💰 가성비</span>
+        <span class="hotel-tag">🛁 대형욕조</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section id="day2" class="day-section">
+  <div class="container">
+    <div class="day-header">
+      <div class="day-number">02</div>
+      <div class="day-info">
+        <div class="day-label">8월 5일 (수요일)</div>
+        <h2 class="day-title">☀️ 송정 물놀이<br>& 릴렉스 데이</h2>
+        <p class="day-desc">느긋하게 바다를 즐기는 날. 서핑 성지 송정에서 힐링.</p>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🏖</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',0)">
+            <div class="card-time">09:00</div>
+            <div class="card-name">송정해수욕장</div>
+            <div class="card-desc">안전요원 상주, 수질 깨끗, 파도 잔잔. 해운대보다 한적하고 서퍼들의 성지. 오전에 자리 잡기 추천.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🍽</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',1)">
+            <div class="card-time">12:30</div>
+            <div class="card-name">Garookang Table</div>
+            <div class="card-desc">송정해변 끝자락 오션뷰 레스토랑 ★4.3. 이탈리안·프렌치 메뉴. 맵지 않고 깔끔해서 물놀이 후 딱. 2층 창가 자리 뷰 최고.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-cafe">☕</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',2)">
+            <div class="card-time">14:00</div>
+            <div class="card-name">수월경화 카페</div>
+            <div class="card-desc">전통 한식 디저트 & 말차·식혜. 4층 바다뷰 자리 최고. 송정해수욕장 도보 1분. ★4.7</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🌊</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',3)">
+            <div class="card-time">15:30</div>
+            <div class="card-name">송정해변 산책 & 자유 시간</div>
+            <div class="card-desc">숙소 체크인 후 짐 풀고 느긋하게. 해변 덱 산책, 서핑샵 구경, 편의점 아이스크림 🍦</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🥩</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',4)">
+            <div class="card-time">18:30</div>
+            <div class="card-name">구덕포끝집고기</div>
+            <div class="card-desc">송정~구덕포 해안 산책로 끝 자리. 바다 뷰 고기집 ★4.2. 소박하지만 분위기 최고.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-cafe">☕</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day2',5)">
+            <div class="card-time">20:30</div>
+            <div class="card-name">Oldmug 카페</div>
+            <div class="card-desc">해변 바람 맞으며 맥주 한 캔 🍺 or 올드머그 카페 디저트. 내일을 위한 충전!</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-sticky">
+        <div class="map-panel">
+          <div class="map-panel-header">
+            <span class="map-panel-title">Day 2 동선</span>
+            <span class="map-panel-badge">6 SPOTS</span>
+          </div>
+          <div class="map-frame">
+            <iframe id="map-day2" src="https://www.openstreetmap.org/export/embed.html?bbox=129.1932,35.1728,129.2072,35.1828&layer=mapnik&marker=35.1778,129.2002" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="map-locations" id="locs-day2"></div>
+          <a id="gmaps-day2" href="https://maps.google.com/maps?q=송정해수욕장+부산" target="_blank" class="map-open-btn">
+            🗺 Google Maps에서 전체 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section id="day3" class="day-section">
+  <div class="container">
+    <div class="day-header">
+      <div class="day-number">03</div>
+      <div class="day-info">
+        <div class="day-label">8월 6일 (목요일) · 렌트카</div>
+        <h2 class="day-title">🚗 부산 명소 탐방<br>& 광안리 야경</h2>
+        <p class="day-desc">스카이캡슐부터 야경까지, 부산의 하이라이트를 한 번에.</p>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-fun">🚋</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',0)">
+            <div class="card-time">09:00</div>
+            <div class="card-name">해운대 블루라인파크 스카이캡슐</div>
+            <div class="card-desc">페달 없이 자동 운행! 해안선 따라 미포↔송정 4.8km 절경. 2인 전용 캡슐, 커플 필수 코스.</div>
+            <span class="card-warn">⚠️ 사전 예약 필수 — 8월 성수기 2~3주 전 매진</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🏯</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',1)">
+            <div class="card-time">11:00</div>
+            <div class="card-name">해동용궁사</div>
+            <div class="card-desc">한국 유일 해안 사찰. 바위 절벽 위 사찰 & 파도 소리. 8월 성수기 일찍 방문 추천.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🍽</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',2)">
+            <div class="card-time">13:00</div>
+            <div class="card-name">전설의 우대갈비 해운대</div>
+            <div class="card-desc">소갈비 특화 ★4.9. 직원이 직접 구워주는 전통 서비스. 오션뷰 테이블 요청 필수.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-fun">🎨</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',3)">
+            <div class="card-time">15:00</div>
+            <div class="card-name">감천문화마을</div>
+            <div class="card-desc">부산의 산토리니. 골목골목 알록달록 벽화 & 아트. 오르막 많으니 편한 신발 필수.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🌅</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',4)">
+            <div class="card-time">17:30</div>
+            <div class="card-name">흰여울문화마을</div>
+            <div class="card-desc">영도 해안 절벽 조용한 마을. 노을 명소 1등. 카페 & 벤치에서 수평선 감상.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🍽</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',5)">
+            <div class="card-time">19:30</div>
+            <div class="card-name">광안제일돼지국밥</div>
+            <div class="card-desc">광안리 단골 ★4.8. 부산 정통 돼지국밥. 24시간 운영. 뼈다귀 듬뿍 & 담백한 국물.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-night">🌉</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day3',6)">
+            <div class="card-time">21:00</div>
+            <div class="card-name">광안대교 야경</div>
+            <div class="card-desc">부산 최고의 야경 스폿. 광안리 해변 산책하며 라이트업 된 다리 감상.</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-sticky">
+        <div class="map-panel">
+          <div class="map-panel-header">
+            <span class="map-panel-title">Day 3 동선</span>
+            <span class="map-panel-badge">7 SPOTS</span>
+          </div>
+          <div class="map-frame">
+            <iframe id="map-day3" src="https://www.openstreetmap.org/export/embed.html?bbox=129.0050,35.0650,129.2300,35.2000&layer=mapnik&marker=35.1573,129.1780" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="map-locations" id="locs-day3"></div>
+          <a id="gmaps-day3" href="https://maps.google.com/maps/dir/해운대블루라인파크/해동용궁사/감천문화마을/흰여울문화마을/광안대교" target="_blank" class="map-open-btn">
+            🗺 Google Maps에서 전체 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section id="day4" class="day-section">
+  <div class="container">
+    <div class="day-header">
+      <div class="day-number">04</div>
+      <div class="day-info">
+        <div class="day-label">8월 7일 (금요일) · 렌트카</div>
+        <h2 class="day-title">🚗 자연 & 액티비티<br>마무리 코스</h2>
+        <p class="day-desc">태종대 절벽부터 구름산책로까지, 마지막을 화려하게.</p>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🌲</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day4',0)">
+            <div class="card-time">09:30</div>
+            <div class="card-name">태종대</div>
+            <div class="card-desc">절벽 & 등대의 해안 절경. 다누비열차(2,000원) 탑승 추천. 전망대에서 대마도 보임.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-fun">🌉</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day4',1)">
+            <div class="card-time">12:00</div>
+            <div class="card-name">암남공원 구름산책로 & 용궁구름다리</div>
+            <div class="card-desc">해안 따라 걷는 무료 산책로, 끝에는 바다 위 출렁다리(입장료 1,000원). 사진 명소 가득한 짧은 트레킹. 태종대에서 차로 15분, 주차 편리.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🍽</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day4',2)">
+            <div class="card-time">14:00</div>
+            <div class="card-name">원앙분식</div>
+            <div class="card-desc">부산 향토 분식집. 충무김밥+냄비우동 세트 추천. 돌솥비빔밥도 별미.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-food">🥩</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day4',3)">
+            <div class="card-time">16:00</div>
+            <div class="card-name">쇼미더고기 해운대점</div>
+            <div class="card-desc">평점 ★4.9 한국식 바비큐. 사장님이 직접 구워주며 먹는 법까지 알려줌.</div>
+            <span class="card-warn">⚠️ 네이버 예약 미리! 피크타임 웨이팅 있음</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-ocean">🌇</div>
+          <div class="timeline-card" onclick="selectPlace(this,'day4',4)">
+            <div class="card-time">18:30</div>
+            <div class="card-name">해운대 해변 & 달맞이길</div>
+            <div class="card-desc">여행 마지막 노을. 달맞이길 or 쿠팡부두 방면 카페 추천. 추억 마무리 🧡</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-sticky">
+        <div class="map-panel">
+          <div class="map-panel-header">
+            <span class="map-panel-title">Day 4 동선</span>
+            <span class="map-panel-badge">5 SPOTS</span>
+          </div>
+          <div class="map-frame">
+            <iframe id="map-day4" src="https://www.openstreetmap.org/export/embed.html?bbox=129.0659,35.0534,129.0799,35.0654&layer=mapnik&marker=35.0594,129.0729" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="map-locations" id="locs-day4"></div>
+          <a href="https://maps.google.com/maps/dir/태종대/암남공원/쇼미더고기+해운대/해운대해수욕장" target="_blank" class="map-open-btn">
+            🗺 Google Maps에서 전체 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" class="checklist-section">
+  <div class="container">
+    <p class="section-eyebrow">출발 전 준비</p>
+    <h2 class="section-title">예약 체크리스트</h2>
+    <div class="checklist-grid">
+      <div class="check-card">
+        <div class="check-urgency-dot urgent"></div>
+        <div>
+          <div class="check-title">🏨 숙소</div>
+          <div class="check-sub">네이버 · 야놀자 · 여기어때</div>
+          <div class="check-desc">8월 성수기 — 최소 2~3주 전 예약. Hound Hotel Songjeong 1순위.</div>
+          <span class="check-status status-urgent">🔴 지금 바로!</span>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-urgency-dot urgent"></div>
+        <div>
+          <div class="check-title">🚋 스카이캡슐</div>
+          <div class="check-sub">bluelinepark.com</div>
+          <div class="check-desc">8월 성수기 2~3주 전 매진. 전체 일정 중 최우선 예약 항목.</div>
+          <a href="https://www.bluelinepark.com" target="_blank" class="check-btn">예약하러 가기 →</a>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-urgency-dot urgent"></div>
+        <div>
+          <div class="check-title">🚆 KTX / 기차</div>
+          <div class="check-sub">코레일 · SRT</div>
+          <div class="check-desc">8월 4일(화) 퇴근 후 출발. 서울-부산 약 2시간 30분.</div>
+          <a href="https://www.letskorail.com" target="_blank" class="check-btn">예약하러 가기 →</a>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-urgency-dot soon"></div>
+        <div>
+          <div class="check-title">🚗 렌트카</div>
+          <div class="check-sub">제주카 · 롯데렌터카 · 쏘카</div>
+          <div class="check-desc">8월 6일 아침 해운대·송정 지점 수령. 성수기 가격 오르기 전 미리.</div>
+          <span class="check-status status-soon">🟡 1~2주 전</span>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-urgency-dot soon"></div>
+        <div>
+          <div class="check-title">🥩 쇼미더고기</div>
+          <div class="check-sub">네이버 예약</div>
+          <div class="check-desc">★4.9 인기 맛집. 저녁 피크타임 당일 예약 어려움. 3~5일 전 예약 권장.</div>
+          <span class="check-status status-soon">🟡 3~5일 전</span>
+        </div>
+      </div>
+      <div class="check-card">
+        <div class="check-urgency-dot whenever"></div>
+        <div>
+          <div class="check-title">🌉 용궁구름다리</div>
+          <div class="check-sub">암남공원 매표소 · 현장 구매</div>
+          <div class="check-desc">구름산책로는 무료, 용궁구름다리 입장료 1,000원. 사전 예약 불필요, 현장 매표만 하면 OK.</div>
+          <span class="check-status status-whenever">🟢 예약 불필요</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKING -->
+<section id="packing" class="packing-section">
+  <div class="container">
+    <p class="section-eyebrow">여행 준비물</p>
+    <h2 class="section-title">3박 4일 커플 여행<br>준비물 체크리스트</h2>
+
+    <div class="pack-summary" id="pack-summary">
+      <div class="pack-summary-chip chip-total">🎒 총 <span id="total-count">0</span>개</div>
+      <div class="pack-summary-chip chip-checked">✅ <span id="checked-count">0</span>개 완료</div>
+      <div class="pack-summary-chip chip-remain">📦 <span id="remain-count">0</span>개 남음</div>
+    </div>
+
+    <div class="pack-grid" id="pack-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">부<span>산</span></div>
+  <p>2026년 8월 4일 — 7일 &nbsp;·&nbsp; 3박 4일 커플 여행</p>
+  <p style="margin-top:4px">즐거운 여행 되세요 🌊</p>
+</footer>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDLh6ETE2Cq8uXX8PUjC-4TmqvWlXkgLGs",
+    authDomain: "busan-trip-thkim-2026.firebaseapp.com",
+    projectId: "busan-trip-thkim-2026",
+    storageBucket: "busan-trip-thkim-2026.firebasestorage.app",
+    messagingSenderId: "579191921403",
+    appId: "1:579191921403:web:55e8ad169d4e85d7f7ae5e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const TRIP_DOC = doc(db, 'trips', 'busan-2026');
+
+  window._db = db;
+  window._tripDoc = TRIP_DOC;
+  window._firestoreReady = false;
+  window._setDoc = setDoc;
+
+  // Load saved state
+  async function loadCheckedState() {
+    try {
+      const snap = await getDoc(TRIP_DOC);
+      if (snap.exists()) {
+        const data = snap.data().packing || {};
+        Object.entries(data).forEach(([key, val]) => {
+          if (val && window._checkedState) {
+            window._checkedState[key] = true;
+          }
+        });
+        // Re-render checked items
+        if (window._applyLoadedState) window._applyLoadedState();
+      }
+    } catch (e) {
+      console.warn('Firestore load failed:', e);
+    }
+    window._firestoreReady = true;
+  }
+
+  window._saveCheckedState = async function() {
+    if (!window._firestoreReady) return;
+    try {
+      await setDoc(TRIP_DOC, { packing: { ...window._checkedState } }, { merge: true });
+    } catch (e) {
+      console.warn('Firestore save failed:', e);
+    }
+  };
+
+  // Wait for buildPacking() to finish before applying loaded state
+  function waitAndLoad() {
+    if (window._applyLoadedState) {
+      loadCheckedState();
+    } else {
+      setTimeout(waitAndLoad, 50);
+    }
+  }
+  document.addEventListener('DOMContentLoaded', waitAndLoad);
+</script>
+
+<script>
+  /* ── PLACE DATA ── */
+  const places = {
+    day2: [
+      { name: "송정해수욕장",     lat: 35.1778, lon: 129.2002 },
+      { name: "Garookang Table",  lat: 35.1782, lon: 129.1990 },
+      { name: "수월경화 카페",     lat: 35.1776, lon: 129.1998 },
+      { name: "송정해변 산책로",   lat: 35.1778, lon: 129.2002 },
+      { name: "구덕포끝집고기",    lat: 35.1751, lon: 129.2031 },
+      { name: "Oldmug 카페",      lat: 35.1780, lon: 129.2006 },
+    ],
+    day3: [
+      { name: "블루라인파크 스카이캡슐", lat: 35.1573, lon: 129.1780 },
+      { name: "해동용궁사",             lat: 35.1889, lon: 129.2226 },
+      { name: "전설의 우대갈비",         lat: 35.1628, lon: 129.1636 },
+      { name: "감천문화마을",             lat: 35.0975, lon: 129.0103 },
+      { name: "흰여울문화마을",           lat: 35.0701, lon: 129.0219 },
+      { name: "광안제일돼지국밥",         lat: 35.1532, lon: 129.1184 },
+      { name: "광안대교 야경",            lat: 35.1487, lon: 129.1184 },
+    ],
+    day4: [
+      { name: "태종대",           lat: 35.0594, lon: 129.0729 },
+      { name: "암남공원 구름산책로 & 용궁구름다리", lat: 35.0619, lon: 129.0222 },
+      { name: "원앙분식",         lat: 35.0976, lon: 129.0290 },
+      { name: "쇼미더고기 해운대", lat: 35.1628, lon: 129.1636 },
+      { name: "해운대 달맞이길",   lat: 35.1579, lon: 129.1780 },
+    ]
+  };
+
+  /* ── BUILD LOCATION LISTS ── */
+  Object.entries(places).forEach(([day, locs]) => {
+    const el = document.getElementById('locs-' + day);
+    if (!el) return;
+    locs.forEach((loc, i) => {
+      const div = document.createElement('div');
+      div.className = 'map-loc-item';
+      div.dataset.idx = i;
+      div.innerHTML = `<div class="map-loc-num">${i+1}</div><span>${loc.name}</span>`;
+      div.onclick = () => focusPlace(day, i);
+      el.appendChild(div);
+    });
+  });
+
+  function selectPlace(card, day, idx) {
+    document.querySelectorAll(`#${day} .timeline-card`).forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    focusPlace(day, idx);
+  }
+
+  function focusPlace(day, idx) {
+    const loc = places[day][idx];
+    document.querySelectorAll(`#locs-${day} .map-loc-item`).forEach(el => {
+      el.classList.toggle('active', parseInt(el.dataset.idx) === idx);
+    });
+    const iframe = document.getElementById('map-' + day);
+    if (iframe) {
+      const d = 0.007;
+      iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${loc.lon-d},${loc.lat-d*0.6},${loc.lon+d},${loc.lat+d*0.6}&layer=mapnik&marker=${loc.lat},${loc.lon}`;
+    }
+  }
+
+  /* ── NAV CLICK SMOOTH SCROLL ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 60;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ── NAV ACTIVE ON SCROLL ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navItems.forEach(n => { n.classList.toggle('active', n.getAttribute('href') === '#' + current); });
+  });
+
+  /* ── PACKING DATA ── */
+  const packingData = [
+    {
+      id: 'clothes',
+      icon: '👕',
+      color: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+      title: '의류 · 속옷',
+      items: [
+        { name: '속옷', note: '3박 4일 + 여유 1개', tag: 'must' },
+        { name: '양말', note: '얇은 여름 양말 4켤레', tag: 'must' },
+        { name: '여분 상의', note: '티셔츠 3~4벌', tag: 'must' },
+        { name: '여분 하의', note: '반바지 2벌 + 긴바지 1벌', tag: 'must' },
+        { name: '수영복', note: '바다 물놀이 필수!', tag: 'must' },
+        { name: '래시가드', note: '자외선 차단 + 체온 유지', tag: 'must' },
+        { name: '잠옷 / 홈웨어', note: '숙소에서 편하게', tag: 'rec' },
+        { name: '가디건 / 얇은 겉옷', note: '에어컨 / 야간 바람용', tag: 'rec' },
+        { name: '슬리퍼 / 샌들', note: '해변 & 숙소 내', tag: 'must' },
+        { name: '운동화', note: '감천마을 오르막 대비', tag: 'must' },
+        { name: '모자', note: '강한 햇빛 차단', tag: 'must' },
+        { name: '선글라스', note: '바다 눈부심 방지', tag: 'must' },
+      ]
+    },
+    {
+      id: 'toiletry',
+      icon: '🧴',
+      color: 'linear-gradient(135deg, #d1fae5, #a7f3d0)',
+      title: '세면 · 위생',
+      items: [
+        { name: '칫솔 · 치약', note: '여행용 세트 추천', tag: 'must' },
+        { name: '샴푸 · 린스', note: '숙소 제공 확인 후 결정', tag: 'rec' },
+        { name: '바디워시', note: '물놀이 후 충분히 씻기', tag: 'must' },
+        { name: '선크림 SPF50+', note: '바다에서 2시간마다 덧바르기', tag: 'must' },
+        { name: '자외선 차단 스틱', note: '외출 시 간편하게', tag: 'rec' },
+        { name: '세안용품', note: '클렌저, 폼, 스크럽 등', tag: 'must' },
+        { name: '기초 스킨케어', note: '보습 / 에센스 등', tag: 'rec' },
+        { name: '면봉 · 화장솜', note: '소량 지퍼백에 담기', tag: 'rec' },
+        { name: '생리대 / 탐폰', note: '필요 시', tag: 'opt' },
+        { name: '제모 도구', note: '수영복 착용 전 준비', tag: 'opt' },
+        { name: '향수 / 바디미스트', note: '여름 여행 기분 UP', tag: 'opt' },
+      ]
+    },
+    {
+      id: 'electronics',
+      icon: '🔌',
+      color: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
+      title: '전자기기 · 충전',
+      items: [
+        { name: '스마트폰 충전기', note: '2개 챙기면 더 좋음', tag: 'must' },
+        { name: '보조배터리', note: '10,000mAh 이상 추천', tag: 'must' },
+        { name: 'USB-C 케이블', note: '여유분 1개', tag: 'must' },
+        { name: '이어폰 / 무선 이어버드', note: '이동 시 음악', tag: 'rec' },
+        { name: '카메라 / 액션캠', note: '바다 추억 촬영', tag: 'rec' },
+        { name: '카메라 충전기 · 여분 배터리', note: '장시간 사용 대비', tag: 'rec' },
+        { name: '방수 케이스 / 드라이백', note: '물놀이 시 스마트폰 보호', tag: 'must' },
+        { name: '멀티탭 / 멀티어댑터', note: '숙소 콘센트 부족 대비', tag: 'opt' },
+      ]
+    },
+    {
+      id: 'beach',
+      icon: '🏖',
+      color: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+      title: '물놀이 · 해변',
+      items: [
+        { name: '수건 (대형)', note: '비치타월 / 숙소 제공 확인', tag: 'must' },
+        { name: '방수 샌들', note: '해변 & 물놀이용', tag: 'must' },
+        { name: '방수 파우치', note: '지갑·핸드폰 보호', tag: 'must' },
+        { name: '물놀이 고글', note: '바닷물 눈 보호', tag: 'rec' },
+        { name: '튜브 / 스노클링 장비', note: '현지 렌탈 가능', tag: 'opt' },
+        { name: '비치백 (망사/방수)', note: '모래 털기 편한 소재', tag: 'rec' },
+        { name: '물놀이 후 립밤', note: '짠 바닷물로 건조해짐', tag: 'rec' },
+        { name: '젤 선스틱', note: '물 속에서도 지속', tag: 'rec' },
+      ]
+    },
+    {
+      id: 'health',
+      icon: '💊',
+      color: 'linear-gradient(135deg, #fee2e2, #fecaca)',
+      title: '의약품 · 건강',
+      items: [
+        { name: '진통제 (타이레놀 등)', note: '두통, 몸살 대비', tag: 'must' },
+        { name: '소화제', note: '음식 많이 먹을 예정!', tag: 'must' },
+        { name: '지사제', note: '배탈 대비', tag: 'rec' },
+        { name: '멀미약', note: 'KTX / 렌트카 이동', tag: 'rec' },
+        { name: '밴드 / 상처 연고', note: '물집, 긁힘 대비', tag: 'must' },
+        { name: '벌레 기피제', note: '여름 모기 방지', tag: 'must' },
+        { name: '알로에 젤', note: '선번 / 햇빛 화상 진정', tag: 'rec' },
+        { name: '마스크 (일회용)', note: '이동 시 / 실내 혼잡', tag: 'opt' },
+        { name: '개인 상비약', note: '평소 복용 약 꼭 챙기기', tag: 'must' },
+      ]
+    },
+    {
+      id: 'documents',
+      icon: '📄',
+      color: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
+      title: '서류 · 지갑',
+      items: [
+        { name: '신분증 (주민등록증)', note: '렌트카, 숙소 체크인 필수', tag: 'must' },
+        { name: '신용카드 / 체크카드', note: '2개 이상 챙기기', tag: 'must' },
+        { name: '현금 (소액)', note: '재래시장, 소규모 가게', tag: 'rec' },
+        { name: '숙소 예약 확인서', note: '스크린샷 or 출력', tag: 'must' },
+        { name: 'KTX 예약 확인서', note: '승차권 캡처 저장', tag: 'must' },
+        { name: '스카이캡슐 예약 확인', note: '시간 미리 확인', tag: 'must' },
+        { name: '렌트카 예약 확인서', note: '운전면허증 필수 지참', tag: 'must' },
+        { name: '운전면허증', note: '렌트카 이용 필수', tag: 'must' },
+      ]
+    },
+    {
+      id: 'couple',
+      icon: '💕',
+      color: 'linear-gradient(135deg, #fce7f3, #fbcfe8)',
+      title: '커플 특별 준비물',
+      items: [
+        { name: '커플 우산', note: '갑자기 소나기 대비', tag: 'rec' },
+        { name: '편의점 간식 & 음료', note: '해변 피크닉용', tag: 'rec' },
+        { name: '폴라로이드 카메라', note: '즉석 사진으로 추억', tag: 'opt' },
+        { name: '작은 메모장 / 여행 다이어리', note: '추억 기록', tag: 'opt' },
+        { name: '커플 수면 안대 & 귀마개', note: '기차 이동 숙면', tag: 'rec' },
+        { name: '여행용 세면 공유 파우치', note: '함께 쓰는 용품 정리', tag: 'rec' },
+        { name: '비상용 현금 봉투', note: '예상치 못한 지출 대비', tag: 'rec' },
+        { name: '미니 핸드크림', note: '바닷바람으로 손 건조', tag: 'rec' },
+      ]
+    },
+    {
+      id: 'bag',
+      icon: '🎒',
+      color: 'linear-gradient(135deg, #f1f5f9, #e2e8f0)',
+      title: '가방 · 짐 싸기',
+      items: [
+        { name: '캐리어 / 여행 가방', note: '3박 4일 기준 28인치 적당', tag: 'must' },
+        { name: '소형 백팩 or 크로스백', note: '당일 외출용', tag: 'must' },
+        { name: '지퍼백 세트 (대/중/소)', note: '물건 분리 정리', tag: 'rec' },
+        { name: '빨래 봉투', note: '입은 옷 분리 보관', tag: 'rec' },
+        { name: '여행용 소분 용기', note: '샴푸, 로션 등 소량 담기', tag: 'rec' },
+        { name: '자물쇠', note: '캐리어 잠금', tag: 'opt' },
+      ]
+    },
+  ];
+
+  /* ── BUILD PACKING UI ── */
+  const checkedState = {};
+  window._checkedState = checkedState;
+  let totalCount = 0;
+
+  function buildPacking() {
+    const grid = document.getElementById('pack-grid');
+    packingData.forEach(group => {
+      totalCount += group.items.length;
+      group.items.forEach((_, i) => { checkedState[group.id + '-' + i] = false; });
+
+      const card = document.createElement('div');
+      card.className = 'pack-group';
+
+      const header = document.createElement('div');
+      header.className = 'pack-group-header';
+      header.style.background = 'linear-gradient(135deg, #f8faff, #fff)';
+      header.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
+
+      const iconEl = document.createElement('div');
+      iconEl.className = 'pack-group-icon';
+      iconEl.style.background = group.color;
+      iconEl.textContent = group.icon;
+
+      const titleEl = document.createElement('div');
+      titleEl.className = 'pack-group-title';
+      titleEl.textContent = group.title;
+
+      const countEl = document.createElement('div');
+      countEl.className = 'pack-group-count';
+      countEl.id = 'count-' + group.id;
+      countEl.textContent = `0 / ${group.items.length}`;
+
+      header.appendChild(iconEl);
+      header.appendChild(titleEl);
+      header.appendChild(countEl);
+      card.appendChild(header);
+
+      const itemsEl = document.createElement('div');
+      itemsEl.className = 'pack-items';
+
+      group.items.forEach((item, i) => {
+        const key = group.id + '-' + i;
+        const row = document.createElement('div');
+        row.className = 'pack-item';
+        row.id = 'item-' + key;
+
+        const tagClass = item.tag === 'must' ? 'tag-must' : item.tag === 'rec' ? 'tag-rec' : 'tag-opt';
+        const tagText = item.tag === 'must' ? '필수' : item.tag === 'rec' ? '추천' : '선택';
+
+        row.innerHTML = `
+          <div class="pack-checkbox" id="cb-${key}"></div>
+          <div class="pack-item-name">${item.name}</div>
+          ${item.note ? `<div class="pack-item-note">${item.note}</div>` : ''}
+          <span class="pack-item-tag ${tagClass}">${tagText}</span>
+        `;
+        row.onclick = () => toggleItem(group.id, i, group.items.length);
+        itemsEl.appendChild(row);
+      });
+
+      card.appendChild(itemsEl);
+
+      const progressWrap = document.createElement('div');
+      progressWrap.className = 'pack-progress-bar-wrap';
+      progressWrap.innerHTML = `
+        <div class="pack-progress-label">
+          <span>진행률</span>
+          <span id="pct-${group.id}">0%</span>
+        </div>
+        <div class="pack-progress-bar">
+          <div class="pack-progress-fill" id="bar-${group.id}" style="width:0%"></div>
+        </div>
+      `;
+      card.appendChild(progressWrap);
+
+      grid.appendChild(card);
+    });
+
+    document.getElementById('total-count').textContent = totalCount;
+    document.getElementById('remain-count').textContent = totalCount;
+  }
+
+  window._applyLoadedState = function() {
+    packingData.forEach(group => {
+      let groupChecked = 0;
+      group.items.forEach((_, i) => {
+        const key = group.id + '-' + i;
+        if (checkedState[key]) {
+          groupChecked++;
+          const row = document.getElementById('item-' + key);
+          if (row) row.classList.add('checked');
+        }
+      });
+      const pct = Math.round(groupChecked / group.items.length * 100);
+      const countEl = document.getElementById('count-' + group.id);
+      if (countEl) countEl.textContent = `${groupChecked} / ${group.items.length}`;
+      const barEl = document.getElementById('bar-' + group.id);
+      if (barEl) barEl.style.width = pct + '%';
+      const pctEl = document.getElementById('pct-' + group.id);
+      if (pctEl) pctEl.textContent = pct + '%';
+    });
+    let allChecked = Object.values(checkedState).filter(Boolean).length;
+    document.getElementById('checked-count').textContent = allChecked;
+    document.getElementById('remain-count').textContent = totalCount - allChecked;
+  };
+
+  function toggleItem(groupId, idx, groupTotal) {
+    const key = groupId + '-' + idx;
+    checkedState[key] = !checkedState[key];
+
+    const row = document.getElementById('item-' + key);
+    row.classList.toggle('checked', checkedState[key]);
+
+    // Update group counter + bar
+    let groupChecked = 0;
+    packingData.find(g => g.id === groupId).items.forEach((_, i) => {
+      if (checkedState[groupId + '-' + i]) groupChecked++;
+    });
+    document.getElementById('count-' + groupId).textContent = `${groupChecked} / ${groupTotal}`;
+    const pct = Math.round(groupChecked / groupTotal * 100);
+    document.getElementById('bar-' + groupId).style.width = pct + '%';
+    document.getElementById('pct-' + groupId).textContent = pct + '%';
+
+    // Update global summary
+    let allChecked = Object.values(checkedState).filter(Boolean).length;
+    document.getElementById('checked-count').textContent = allChecked;
+    document.getElementById('remain-count').textContent = totalCount - allChecked;
+
+    if (window._saveCheckedState) window._saveCheckedState();
+  }
+
+  buildPacking();
+</script>
+</body>
+</html>
