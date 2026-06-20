@@ -297,6 +297,7 @@
     color: var(--text);
   }
   .day-desc { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.7; }
+  .day-route { font-size: 13px; color: var(--accent); margin-top: 8px; padding: 6px 12px; background: rgba(56,189,248,0.08); border-radius: 8px; display: inline-block; }
 
   /* ── MAIN CONTENT GRID ── */
   .day-content {
@@ -953,6 +954,7 @@
         <div class="day-label">8월 5일 (수요일)</div>
         <h2 class="day-title">☀️ 송정 물놀이<br>& 릴렉스 데이</h2>
         <p class="day-desc">느긋하게 바다를 즐기는 날. 서핑 성지 송정에서 힐링.</p>
+        <p class="day-route">🏨 송정 브라운도트 출발 → 송정 브라운도트 복귀</p>
       </div>
     </div>
     <div class="day-content">
@@ -1034,6 +1036,7 @@
         <div class="day-label">8월 6일 (목요일) · 렌트카</div>
         <h2 class="day-title">🚗 부산 명소 탐방<br>& 광안리 야경</h2>
         <p class="day-desc">용궁사부터 노을 스카이캡슐, 광안리 야경까지 부산 하이라이트.</p>
+        <p class="day-route">🏨 송정 브라운도트 출발 → 영도 그랜드번 도착</p>
       </div>
     </div>
     <div class="day-content">
@@ -1115,7 +1118,8 @@
       <div class="day-info">
         <div class="day-label">8월 7일 (금요일) · 렌트카</div>
         <h2 class="day-title">🚗 자연 & 액티비티<br>마무리 코스</h2>
-        <p class="day-desc">영도 아침 산책, 태종대, 감천문화마을, 해운대 마무리까지.</p>
+        <p class="day-desc">영도 아침 산책, 태종대, 감천문화마을, 남포동 마무리까지.</p>
+        <p class="day-route">🏨 영도 그랜드번 출발 → 부산역 귀가</p>
       </div>
     </div>
     <div class="day-content">
@@ -1155,18 +1159,17 @@
         <div class="timeline-item">
           <div class="timeline-dot dot-food">🥩</div>
           <div class="timeline-card" onclick="selectPlace(this,'day4',4)">
-            <div class="card-time">17:00</div>
-            <div class="card-name">쇼미더고기 해운대점</div>
-            <div class="card-desc">평점 ★4.9 한국식 바비큐. 사장님이 직접 구워주며 먹는 법까지 알려줌.</div>
-            <span class="card-warn">⚠️ 네이버 예약 미리! 피크타임 웨이팅 있음</span>
+            <div class="card-time">16:30</div>
+            <div class="card-name">남포동 BIFF광장 & 씨앗호떡</div>
+            <div class="card-desc">감천에서 차 10분. 부산 명물 씨앗호떡(견과류 가득, 1개 2천원)과 거리 간식 투어. 광복로 쇼핑거리 산책도 가능.</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-dot dot-ocean">🌇</div>
+          <div class="timeline-dot dot-night">🌇</div>
           <div class="timeline-card" onclick="selectPlace(this,'day4',5)">
-            <div class="card-time">19:00</div>
-            <div class="card-name">해운대 해변 & 달맞이길</div>
-            <div class="card-desc">여행 마지막 노을. 달맞이길 or 쿠팡부두 방면 카페 추천. 추억 마무리 🧡</div>
+            <div class="card-time">18:30</div>
+            <div class="card-name">용두산공원 부산타워</div>
+            <div class="card-desc">남포동 도보 5분. 부산항·영도·광안대교가 한눈에 보이는 전망대. 노을~야경 시간대 최고. 여행 마무리 사진 찍기 🧡</div>
           </div>
         </div>
       </div>
@@ -1180,7 +1183,7 @@
             <div id="map-day4" class="naver-map"></div>
           </div>
           <div class="map-locations" id="locs-day4"></div>
-          <a href="https://www.google.com/maps/dir/35.0776,129.0445/35.0540,129.0857/35.0974,129.0107/35.0980,129.0288/35.1641,129.1694/35.1586,129.1795" target="_blank" class="map-open-btn">
+          <a href="https://www.google.com/maps/dir/35.0776,129.0445/35.0540,129.0857/35.0974,129.0107/35.0980,129.0288/35.0984,129.0291/35.1010,129.0325" target="_blank" class="map-open-btn">
             🗺 Google Maps에서 전체 보기
           </a>
         </div>
@@ -1232,20 +1235,11 @@
         </div>
       </div>
       <div class="check-card">
-        <div class="check-urgency-dot soon"></div>
-        <div>
-          <div class="check-title">🥩 쇼미더고기</div>
-          <div class="check-sub">네이버 예약</div>
-          <div class="check-desc">★4.9 인기 맛집. 저녁 피크타임 당일 예약 어려움. 3~5일 전 예약 권장.</div>
-          <span class="check-status status-soon">🟡 3~5일 전</span>
-        </div>
-      </div>
-      <div class="check-card">
         <div class="check-urgency-dot whenever"></div>
         <div>
-          <div class="check-title">🌉 용궁구름다리</div>
-          <div class="check-sub">암남공원 매표소 · 현장 구매</div>
-          <div class="check-desc">구름산책로는 무료, 용궁구름다리 입장료 1,000원. 사전 예약 불필요, 현장 매표만 하면 OK.</div>
+          <div class="check-title">🗼 부산타워</div>
+          <div class="check-sub">용두산공원 · 현장 구매</div>
+          <div class="check-desc">전망대 입장료 12,000원. 사전 예약 불필요, 현장 매표. 노을~야경 시간대 추천.</div>
           <span class="check-status status-whenever">🟢 예약 불필요</span>
         </div>
       </div>
@@ -1361,8 +1355,8 @@
       { name: "태종대",           lat: 35.0540, lon: 129.0857 },
       { name: "감천문화마을",     lat: 35.0974, lon: 129.0107 },
       { name: "원앙분식",         lat: 35.0980, lon: 129.0288 },
-      { name: "쇼미더고기 해운대", lat: 35.1641, lon: 129.1694 },
-      { name: "해운대 달맞이길",   lat: 35.1586, lon: 129.1795 },
+      { name: "남포동 BIFF광장",  lat: 35.0984, lon: 129.0291 },
+      { name: "용두산공원 부산타워", lat: 35.1010, lon: 129.0325 },
     ]
   };
 
