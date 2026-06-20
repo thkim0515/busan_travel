@@ -448,6 +448,19 @@
     border: none;
     display: block;
   }
+  .map-frame .naver-map { width: 100%; height: 360px; }
+  .nv-pin {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-light));
+    color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    cursor: pointer;
+  }
+  .nv-pin-active {
+    background: linear-gradient(135deg, var(--night), var(--ocean));
+    transform: scale(1.3); box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+  }
   .map-locations {
     border-top: 1px solid var(--border);
     max-height: 240px;
@@ -850,6 +863,7 @@
     .day-content { grid-template-columns: 1fr; }
     .map-sticky { position: static; }
     .map-frame iframe { height: 280px; }
+    .map-frame .naver-map { height: 280px; }
     .pack-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
@@ -859,6 +873,8 @@
     .hero h1 { letter-spacing: -2px; }
   }
 </style>
+<!-- 네이버 지도 JS (NCP Maps). 아래 ncpKeyId 값이 본인 Client ID와 일치하는지 확인하세요. -->
+<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=imimukiww3"></script>
 </head>
 <body>
 
@@ -903,33 +919,26 @@
 <!-- HOTELS -->
 <section id="hotels" class="hotels-section">
   <div class="container">
-    <p class="section-eyebrow">숙소 추천</p>
-    <h2 class="section-title">송정해수욕장<br>도보 1분 숙소</h2>
+    <p class="section-eyebrow">예약 완료 숙소</p>
+    <h2 class="section-title">2박 송정<br>· 1박 영도</h2>
     <div class="hotels-grid">
       <div class="hotel-card top-pick">
-        <span class="hotel-badge">⭐ 1순위</span>
-        <div class="hotel-icon">🐾</div>
-        <div class="hotel-name">Hound Hotel Songjeong</div>
-        <div class="hotel-rating"><span class="stars">★ 4.6</span> · 리뷰 24개</div>
-        <div class="hotel-desc">신축급 청결도, 송정역(해상열차) 도보 1분. 커플·가족 후기 최상. 해변 첫 번째 골목 위치. 조기 체크인 요청 가능.</div>
-        <span class="hotel-tag">🌊 해변 1분</span>
-        <span class="hotel-tag">✨ 신축급</span>
-      </div>
-      <div class="hotel-card">
+        <span class="hotel-badge">🌙 8/4~5 · 2박</span>
         <div class="hotel-icon">🏨</div>
-        <div class="hotel-name">Hotel Laon</div>
-        <div class="hotel-rating"><span class="stars">★ 4.3</span> · 리뷰 578개</div>
-        <div class="hotel-desc">해변 바로 앞 오션뷰, 조식 포함. 일출 보기에 최적. 자쿠지 & 오션뷰 방 인기.</div>
-        <span class="hotel-tag">🌅 오션뷰</span>
-        <span class="hotel-tag">🍳 조식포함</span>
+        <div class="hotel-name">송정 브라운도트호텔</div>
+        <div class="hotel-rating">📍 송정해수욕장 인근 · 8월 4일(화) 체크인 · 2박</div>
+        <div class="hotel-desc">Day 1 야간 도착부터 Day 2 송정 물놀이까지 2박. Day 3 블루라인파크·해동용궁사 출발에도 유리한 위치.</div>
+        <span class="hotel-tag">🌊 송정</span>
+        <span class="hotel-tag">✅ 예약완료</span>
       </div>
-      <div class="hotel-card">
-        <div class="hotel-icon">🌊</div>
-        <div class="hotel-name">Carib Hotel</div>
-        <div class="hotel-rating"><span class="stars">★ 4.2</span> · 리뷰 373개</div>
-        <div class="hotel-desc">가성비 오션뷰의 끝판왕. 대형 욕조 & 오션뷰 합리적 가격. 장기 투숙자 단골 후기 많음.</div>
-        <span class="hotel-tag">💰 가성비</span>
-        <span class="hotel-tag">🛁 대형욕조</span>
+      <div class="hotel-card top-pick">
+        <span class="hotel-badge">🌇 8/6 (목) · 1박</span>
+        <div class="hotel-icon">🌉</div>
+        <div class="hotel-name">영도 그랜드 베른 호텔</div>
+        <div class="hotel-rating">📍 영도 · 8월 6일(목) 체크인</div>
+        <div class="hotel-desc">Day 4 태종대·흰여울·감천(영도·서부) 동선의 출발점. 마지막 날 이동 거리가 크게 줄고, 부산역 KTX 귀가에도 가까움.</div>
+        <span class="hotel-tag">🌅 영도</span>
+        <span class="hotel-tag">✅ 예약완료</span>
       </div>
     </div>
   </div>
@@ -1004,10 +1013,10 @@
             <span class="map-panel-badge">6 SPOTS</span>
           </div>
           <div class="map-frame">
-            <iframe id="map-day2" src="https://www.openstreetmap.org/export/embed.html?bbox=129.1932,35.1728,129.2072,35.1828&layer=mapnik&marker=35.1778,129.2002" allowfullscreen loading="lazy"></iframe>
+            <div id="map-day2" class="naver-map"></div>
           </div>
           <div class="map-locations" id="locs-day2"></div>
-          <a id="gmaps-day2" href="https://maps.google.com/maps?q=송정해수욕장+부산" target="_blank" class="map-open-btn">
+          <a id="gmaps-day2" href="https://www.google.com/maps/dir/35.1793,129.2000/35.1799,129.1997/35.1789,129.1996/35.1782,129.1992/35.1705,129.1973/35.1716,129.1977" target="_blank" class="map-open-btn">
             🗺 Google Maps에서 전체 보기
           </a>
         </div>
@@ -1094,10 +1103,10 @@
             <span class="map-panel-badge">7 SPOTS</span>
           </div>
           <div class="map-frame">
-            <iframe id="map-day3" src="https://www.openstreetmap.org/export/embed.html?bbox=129.0050,35.0650,129.2300,35.2000&layer=mapnik&marker=35.1573,129.1780" allowfullscreen loading="lazy"></iframe>
+            <div id="map-day3" class="naver-map"></div>
           </div>
           <div class="map-locations" id="locs-day3"></div>
-          <a id="gmaps-day3" href="https://maps.google.com/maps/dir/해운대블루라인파크/해동용궁사/감천문화마을/흰여울문화마을/광안대교" target="_blank" class="map-open-btn">
+          <a id="gmaps-day3" href="https://www.google.com/maps/dir/35.1601,129.1740/35.1885,129.2234/35.1586,129.1612/35.0974,129.0107/35.0776,129.0445/35.1539,129.1283/35.1532,129.1186" target="_blank" class="map-open-btn">
             🗺 Google Maps에서 전체 보기
           </a>
         </div>
@@ -1168,10 +1177,10 @@
             <span class="map-panel-badge">5 SPOTS</span>
           </div>
           <div class="map-frame">
-            <iframe id="map-day4" src="https://www.openstreetmap.org/export/embed.html?bbox=129.0659,35.0534,129.0799,35.0654&layer=mapnik&marker=35.0594,129.0729" allowfullscreen loading="lazy"></iframe>
+            <div id="map-day4" class="naver-map"></div>
           </div>
           <div class="map-locations" id="locs-day4"></div>
-          <a href="https://maps.google.com/maps/dir/태종대/암남공원/쇼미더고기+해운대/해운대해수욕장" target="_blank" class="map-open-btn">
+          <a href="https://www.google.com/maps/dir/35.0540,129.0857/35.0757,129.0145/35.0980,129.0288/35.1641,129.1694/35.1586,129.1795" target="_blank" class="map-open-btn">
             🗺 Google Maps에서 전체 보기
           </a>
         </div>
@@ -1332,28 +1341,28 @@
   /* ── PLACE DATA ── */
   const places = {
     day2: [
-      { name: "송정해수욕장",     lat: 35.1778, lon: 129.2002 },
-      { name: "Garookang Table",  lat: 35.1782, lon: 129.1990 },
-      { name: "수월경화 카페",     lat: 35.1776, lon: 129.1998 },
-      { name: "송정해변 산책로",   lat: 35.1778, lon: 129.2002 },
-      { name: "구덕포끝집고기",    lat: 35.1751, lon: 129.2031 },
-      { name: "Oldmug 카페",      lat: 35.1780, lon: 129.2006 },
+      { name: "송정해수욕장",     lat: 35.1793, lon: 129.2000 },
+      { name: "Garookang Table",  lat: 35.1799, lon: 129.1997 },
+      { name: "수월경화 카페",     lat: 35.1789, lon: 129.1996 },
+      { name: "송정해변 산책로",   lat: 35.1782, lon: 129.1992 },
+      { name: "구덕포끝집고기",    lat: 35.1705, lon: 129.1973 },
+      { name: "Oldmug 카페",      lat: 35.1716, lon: 129.1977 },
     ],
     day3: [
-      { name: "블루라인파크 스카이캡슐", lat: 35.1573, lon: 129.1780 },
-      { name: "해동용궁사",             lat: 35.1889, lon: 129.2226 },
-      { name: "전설의 우대갈비",         lat: 35.1628, lon: 129.1636 },
-      { name: "감천문화마을",             lat: 35.0975, lon: 129.0103 },
-      { name: "흰여울문화마을",           lat: 35.0701, lon: 129.0219 },
-      { name: "광안제일돼지국밥",         lat: 35.1532, lon: 129.1184 },
-      { name: "광안대교 야경",            lat: 35.1487, lon: 129.1184 },
+      { name: "블루라인파크 스카이캡슐", lat: 35.1601, lon: 129.1740 },
+      { name: "해동용궁사",             lat: 35.1885, lon: 129.2234 },
+      { name: "전설의 우대갈비",         lat: 35.1586, lon: 129.1612 },
+      { name: "감천문화마을",             lat: 35.0974, lon: 129.0107 },
+      { name: "흰여울문화마을",           lat: 35.0776, lon: 129.0445 },
+      { name: "광안제일돼지국밥",         lat: 35.1539, lon: 129.1283 },
+      { name: "광안대교 야경",            lat: 35.1532, lon: 129.1186 },
     ],
     day4: [
-      { name: "태종대",           lat: 35.0594, lon: 129.0729 },
-      { name: "암남공원 구름산책로 & 용궁구름다리", lat: 35.0619, lon: 129.0222 },
-      { name: "원앙분식",         lat: 35.0976, lon: 129.0290 },
-      { name: "쇼미더고기 해운대", lat: 35.1628, lon: 129.1636 },
-      { name: "해운대 달맞이길",   lat: 35.1579, lon: 129.1780 },
+      { name: "태종대",           lat: 35.0540, lon: 129.0857 },
+      { name: "암남공원 구름산책로 & 용궁구름다리", lat: 35.0757, lon: 129.0145 },
+      { name: "원앙분식",         lat: 35.0980, lon: 129.0288 },
+      { name: "쇼미더고기 해운대", lat: 35.1641, lon: 129.1694 },
+      { name: "해운대 달맞이길",   lat: 35.1586, lon: 129.1795 },
     ]
   };
 
@@ -1377,17 +1386,66 @@
     focusPlace(day, idx);
   }
 
+  /* ── NAVER MAPS ── */
+  const dayMaps = {};
+  const dayMarkers = {};
+
+  function initNaverMaps() {
+    if (!(window.naver && naver.maps)) return;
+    Object.entries(places).forEach(([day, locs]) => {
+      const el = document.getElementById('map-' + day);
+      if (!el) return;
+      const map = new naver.maps.Map(el, {
+        zoom: 13,
+        mapTypeControl: false,
+        scaleControl: false,
+        logoControl: true,
+        zoomControl: true,
+        zoomControlOptions: { position: naver.maps.Position.TOP_RIGHT }
+      });
+      const bounds = new naver.maps.LatLngBounds();
+      const markers = locs.map((loc, i) => {
+        const pos = new naver.maps.LatLng(loc.lat, loc.lon);
+        bounds.extend(pos);
+        const marker = new naver.maps.Marker({
+          position: pos, map, title: loc.name, zIndex: 100,
+          icon: { content: `<div class="nv-pin">${i + 1}</div>`, anchor: new naver.maps.Point(15, 15) }
+        });
+        naver.maps.Event.addListener(marker, 'click', () => focusPlace(day, i));
+        return marker;
+      });
+      map.fitBounds(bounds, { top: 40, right: 40, bottom: 40, left: 40 });
+      dayMaps[day] = map;
+      dayMarkers[day] = markers;
+    });
+  }
+
   function focusPlace(day, idx) {
     const loc = places[day][idx];
     document.querySelectorAll(`#locs-${day} .map-loc-item`).forEach(el => {
       el.classList.toggle('active', parseInt(el.dataset.idx) === idx);
     });
-    const iframe = document.getElementById('map-' + day);
-    if (iframe) {
-      const d = 0.007;
-      iframe.src = `https://www.openstreetmap.org/export/embed.html?bbox=${loc.lon-d},${loc.lat-d*0.6},${loc.lon+d},${loc.lat+d*0.6}&layer=mapnik&marker=${loc.lat},${loc.lon}`;
+    const map = dayMaps[day];
+    if (map) {
+      map.morph(new naver.maps.LatLng(loc.lat, loc.lon), 16);
+      (dayMarkers[day] || []).forEach((m, i) => {
+        m.setZIndex(i === idx ? 1000 : 100);
+        const node = m.getElement && m.getElement();
+        const pin = node && node.querySelector('.nv-pin');
+        if (pin) pin.classList.toggle('nv-pin-active', i === idx);
+      });
     }
   }
+
+  if (window.naver && naver.maps) initNaverMaps();
+  else window.addEventListener('load', initNaverMaps);
+
+  window.navermap_authFailure = function () {
+    Object.keys(places).forEach(day => {
+      const el = document.getElementById('map-' + day);
+      if (el) el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:24px;text-align:center;color:#888;font-size:13px;line-height:1.7;">네이버 지도 인증 실패<br>NCP 콘솔의 Client ID / 도메인 등록을 확인하세요.</div>';
+    });
+  };
 
   /* ── NAV CLICK SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
