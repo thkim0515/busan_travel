@@ -297,7 +297,9 @@
     color: var(--text);
   }
   .day-desc { font-size: 14px; color: var(--muted); margin-top: 10px; line-height: 1.7; }
-  .day-route { font-size: 13px; color: #38bdf8; margin-top: 8px; padding: 6px 12px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); border-radius: 8px; display: inline-block; letter-spacing: 0.3px; }
+  .day-route { display: none; }
+  .dot-hotel { background: linear-gradient(135deg,#f59e0b,#f97316) !important; }
+  .timeline-card.hotel-card-inline { background: linear-gradient(135deg,rgba(245,158,11,0.08),rgba(249,115,22,0.06)); border: 1px dashed rgba(245,158,11,0.3); }
 
   /* ── MAIN CONTENT GRID ── */
   .day-content {
@@ -960,6 +962,14 @@
     <div class="day-content">
       <div class="timeline">
         <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🏨</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">출발</div>
+            <div class="card-name">송정 브라운도트호텔</div>
+            <div class="card-desc">송정해수욕장 인근 숙소에서 출발. 도보로 바로 해변 이동 가능.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
           <div class="timeline-dot dot-ocean">🏖</div>
           <div class="timeline-card" onclick="selectPlace(this,'day2',0)">
             <div class="card-time">09:00</div>
@@ -1007,6 +1017,14 @@
             <div class="card-desc">해변 바람 맞으며 수제맥주 한 잔 or 디저트. 송정 밤바다 감상하며 내일을 위한 충전. 야외석 추천.</div>
           </div>
         </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🏨</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">복귀</div>
+            <div class="card-name">송정 브라운도트호텔</div>
+            <div class="card-desc">숙소로 복귀. 내일 렌트카 픽업 준비.</div>
+          </div>
+        </div>
       </div>
       <div class="map-sticky">
         <div class="map-panel">
@@ -1041,6 +1059,14 @@
     </div>
     <div class="day-content">
       <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🏨</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">출발</div>
+            <div class="card-name">송정 브라운도트호텔</div>
+            <div class="card-desc">체크아웃 후 렌트카로 출발. 용궁사까지 차 20분.</div>
+          </div>
+        </div>
         <div class="timeline-item">
           <div class="timeline-dot dot-ocean">🏯</div>
           <div class="timeline-card" onclick="selectPlace(this,'day3',0)">
@@ -1090,6 +1116,14 @@
             <div class="card-desc">부산 최고의 야경 스폿. 광안리 해변 산책하며 라이트업 된 다리 감상. 편의점 맥주 한 캔과 함께.</div>
           </div>
         </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🏨</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">도착</div>
+            <div class="card-name">영도 그랜드 베른 호텔</div>
+            <div class="card-desc">광안리에서 영도까지 차 15분. 체크인 후 휴식.</div>
+          </div>
+        </div>
       </div>
       <div class="map-sticky">
         <div class="map-panel">
@@ -1124,6 +1158,14 @@
     </div>
     <div class="day-content">
       <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🏨</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">출발</div>
+            <div class="card-name">영도 그랜드 베른 호텔</div>
+            <div class="card-desc">체크아웃 후 흰여울문화마을까지 도보 5분.</div>
+          </div>
+        </div>
         <div class="timeline-item">
           <div class="timeline-dot dot-ocean">🌅</div>
           <div class="timeline-card" onclick="selectPlace(this,'day4',0)">
@@ -1170,6 +1212,14 @@
             <div class="card-time">18:30</div>
             <div class="card-name">용두산공원 부산타워</div>
             <div class="card-desc">남포동 도보 5분. 부산항·영도·광안대교가 한눈에 보이는 전망대. 노을~야경 시간대 최고. 여행 마무리 사진 찍기 🧡</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot dot-hotel">🚆</div>
+          <div class="timeline-card hotel-card-inline">
+            <div class="card-time">귀가</div>
+            <div class="card-name">부산역 KTX</div>
+            <div class="card-desc">용두산공원에서 부산역까지 차 10분. 렌트카 반납 후 KTX 탑승.</div>
           </div>
         </div>
       </div>
