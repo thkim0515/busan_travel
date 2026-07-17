@@ -8,11 +8,6 @@ service cloud.firestore {
       allow write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // 부산 여행 준비물 체크리스트 — busan-2026 문서만 허용
-    match /trips/busan-2026 {
-      allow read, write: if true;
-    }
-
     match /couples/{coupleId} {
       allow read: if request.auth != null;
       allow create: if request.auth != null && request.resource.data.user1Id == request.auth.uid;
